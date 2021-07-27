@@ -22,9 +22,10 @@ class Post(models.Model):
   def __str__(self):
     return self.Title
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_PIC  = models.FileField(blank=True, upload_to='user_images/')
+    pic  = models.FileField(blank=True, upload_to='user_images/')
     Category = models.CharField(max_length=200,null=True)
     Full_Address = models.TextField(max_length=500,null=True)
     city   = models.CharField(max_length=200,null=True)
@@ -32,7 +33,19 @@ class Profile(models.Model):
     pincode   = models.CharField(max_length=200,null=True)
 
     def __str__(self):
-      return self.city 
+      return self.city
+
+
+class AppointmentList(models.Model):
+    User = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    DR = models.CharField(max_length=200,null=True)
+    RequiredSpeciality = models.CharField(max_length=200,null=True)
+    Date = models.CharField(max_length=200,null=True)
+    start_time = models.TimeField(max_length=200,null=True)
+    end_time = models.TimeField(max_length=200,null=True)
+  
+    def __str__(self):
+      return self.DR 
 
 
 @receiver(post_save, sender=User)
