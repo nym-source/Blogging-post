@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+#from django.contrib.admin.widgets import AdminDateWidget
 
 
 CHOICES= [
@@ -53,6 +54,24 @@ class postFORMS(forms.Form):
       'id' : 'files', 
     }))
 
+
+class BookingFORMS(forms.Form):
+  Required_speciality = forms.CharField(max_length=500,
+    widget=forms.TextInput(attrs={
+      'type' :'text',
+      'class':'form-control',
+      'id'   :'title'
+    }))
+
+  Date_of_Appointment = forms.DateField(help_text='Required. Format: YYYY-MM-DD',
+    widget=forms.TextInput(attrs={
+      'placeholder': 'YYYY-MM-DD',
+    }))
+
+  Start_Time_of_Appointment = forms.CharField(help_text='Required. Format: YYYY-MM-DD',
+    widget=forms.TextInput(attrs={
+      'placeholder': 'Hours:minute',
+    }))
 
 
 class SignUpForm(UserCreationForm):
